@@ -1,12 +1,13 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
     entry: __dirname + "/app/main.js", //__dirname是node.js中的一个全局变量，它指向当前执行脚本所在目录
     output: {
-        path: __dirname + "/public",
-        filename: "bundle.js"
+        path: __dirname + "/build",
+        filename: "bundle-[hash].js"
     },
-    devtool: "eval-source-map",
+    devtool: "",
     devServer: {
         contentBase: "./public",
         historyApiFallback: true,
@@ -40,7 +41,6 @@ module.exports = {
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new HtmlWebpackPlugin({
             template:__dirname+"/app/index.tmpl.html"
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ]
 }
